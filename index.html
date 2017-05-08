@@ -142,7 +142,7 @@
 			  the queue*/ 
 			  uncoverSquare:function(i,j){
 				var square = getSquare(i, j);
-				if (isValid(i, j, my_board)){
+				if (isValid(i, j, my_board) && my_board[i][j] == EMPTY){
 					if(!isUncoverd(square)){
 						square.className = "uncover";
 						uncovered ++;
