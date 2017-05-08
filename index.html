@@ -16,7 +16,8 @@
 			/* Borad data structers */
 			var my_board; // game board
 			var superman_board; // board for superman mode
-			var superman_list; // mine's list 
+			var superman_list; // mine's list
+			var queue; 
 
 			/* Booleans */
 			var superman; // in superman mode
@@ -85,96 +86,74 @@
 								return;
 						   }
 						   // if the player is not dead
-						   this.handleClick(i,j);
+						   queue.push([i,j]);
+						   this.handleClick();
+						   //this.handleClick(i,j);
 						}
 					}	
 				}
 			  },
 			  /* Function: handleClick
-			  Params: i,j location of square
+			  Params: None
 			  Return value: None
-			  The function reveal the board recursively */ 
-			  handleClick:function(i,j){
-				  // get square
-				  var square = getSquare(i, j);
+			  The function reveal the board */ 
+			  handleClick:function(){
+				var a; // current square
+				var i;
+				var j;
+				// uncover first square
+				a = queue.pop();
+				this.uncoverSquare(a[0],a[1]);
+				while(queue.length > 0){
+					i = a[0];
+					j = a[1];
+					// Check if the square is empty
+					if (superman_board[i][j] > 0){
+						getSquare(i,j).innerHTML = superman_board[i][j];
+					}
+					else{
+						/* Check for each neighbor, if it's a legal one, 
+						and if it's yet to be uncovered.
+						Left - i, j-1
+						Right - i, j+1
+						Top - i-1, j
+						Bottom - i+1, j
+						Top Left - i-1, j-1
+						Top Right - i-1, j+1
+						Bottom Left - i+1, j-1
+						Bottom Right - i+1, j+1 */
+						this.uncoverSquare(i-1,j);
+						this.uncoverSquare(i+1,j);
+						this.uncoverSquare(i,j-1);
+						this.uncoverSquare(i,j+1);
+						this.uncoverSquare(i+1,j-1);
+						this.uncoverSquare(i+1,j+1);
+						this.uncoverSquare(i-1,j-1);
+						this.uncoverSquare(i-1,j+1);
+					}
+					a = queue.pop();
+				}	
 
-				  // i'm an empty square
-				  if(my_board[i][j] == EMPTY){
-					  // uncover me
-					  square.className = "uncover";
-					  uncovered ++;
-					  // check if won
-					  this.checkWin();
-					  // there are mines around me, else recursively find in squares around me
-					  if(superman_board[i][j] > 0){
-						  // update the number of mines around me
-						  square.innerHTML = superman_board[i][j];
-						  return;
-					  }
-					  else{
-						 /* Check for each neighbor, if it's a legal one, 
-							and if it's yet to be uncovered.
-							Nehibor:
-							Left - i, j-1
-							Right - i, j+1
-							Top - i-1, j
-							Bottom - i+1, j
-							Top Left - i-1, j-1
-							Top Right - i-1, j+1
-							Bottom Left - i+1, j-1
-							Bottom Right - i+1, j+1 */
-						// Top
-						 if (isValid(i-1, j, my_board)){
-							if(!isUncoverd(getSquare(i-1,j))){
-								this.handleClick(i-1,j) 
-							}
-						 }
-						 // Bottom
-						 if (isValid(i+1, j, my_board)){
-							if(!isUncoverd(getSquare(i+1,j))){
-								this.handleClick(i+1,j) 
-							}
-						 }
-						 // Left
-						 if (isValid(i, j-1, my_board)){
-							if(!isUncoverd(getSquare(i,j-1))){
-								this.handleClick(i,j-1) 
-							}
-						 }
-						 // Right
-						 if (isValid(i, j+1, my_board)){
-							if(!isUncoverd(getSquare(i,j+1))){
-								this.handleClick(i,j+1) 
-							}
-						 }
-						 // Bottom Left
-						 if (isValid(i+1, j-1, my_board)){
-							if(!isUncoverd(getSquare(i+1, j-1))){
-								this.handleClick(i+1, j-1) 
-							}
-						 }
-						 // Bottom Right
-						 if (isValid(i+1, j+1, my_board)){
-							if(!isUncoverd(getSquare(i+1, j+1))){
-								this.handleClick(i+1, j+1) 
-							}
-						 }
-						 // Top Left
-						 if (isValid(i-1, j-1, my_board)){
-							if(!isUncoverd(getSquare(i-1, j-1))){
-								this.handleClick(i-1, j-1) 
-							}
-						 }
-						 // Top Right
-						 if (isValid(i-1, j+1, my_board)){
-							if(!isUncoverd(getSquare(i-1, j+1))){
-								this.handleClick(i-1, j+1) 
-							}
-						 }
-						 return;
-					  }
-				  }			  
 			  },
+			  /* Function: uncoverSquare
+			  Params: int i & j location in the board
+			  Return value: None
+			  The function uncover the square and push it into
+			  the queue*/ 
+			  uncoverSquare:function(i,j){
+				var square = getSquare(i, j);
+				if (isValid(i, j, my_board)){
+					if(!isUncoverd(square)){
+						square.className = "uncover";
+						uncovered ++;
+						// check if won
+						this.checkWin();
+						queue.push([i,j]);  
+					}
+				}
+
+			  },
+
 			  /* Function: handleFlag
 			  Params: i,j location of square
 			  Return value: None
@@ -484,6 +463,7 @@
 				mines_detected = 0; // No mines detected
 				uncovered = 0;// No mines uncovered
 				flags = 0;// No flags where located
+				queue = [];
 				// board div
 				var board = document.getElementById("board");
 				// get parameters from the input toolbar
