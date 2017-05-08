@@ -1,0 +1,26 @@
+/* body */
+body{
+	height: inherit;
+	font-family: 'Raleway', sans-serif;
+	margin: 0px;
+	
+}
+.emoji_background{
+	background-image: url("../img/emoj.png");
+}
+.dead_background{
+	background-image: url("../img/dead.png");
+}
+/* Minesweeper headline */
+.header{
+	font-family: 'Clicker Script', cursive;
+	margin: 0px;
+	font-weight: 400;
+	font-size: 28px;
+	text-align: center;
+	background-color: #2878a8;
+	color: white;
+	border-bottom-style: solid;
+	border-bottom-color: rgba(0, 0, 0, .3);
+	border-bottom-width: 1px;
+}

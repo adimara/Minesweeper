@@ -1,0 +1,66 @@
+/* Inputs toolbar */
+.head{
+	padding: 10px 0px 10px 0px;
+	text-align: center;
+	background-color: #236891;
+	color:  white;
+	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+input.inputs{
+	width: 100px;
+	margin-right: 20px;
+	margin-bottom: 2px;
+	border: none;
+	padding: 1px;
+	color:  white;
+	text-align: center;
+	background-color: #236891;	
+}
+input.inputs:hover{
+	border-bottom-color: white;
+	border-bottom-width: 2px;
+	border-bottom-style: solid;
+}
+
+/* Restart game button */
+#new_game{
+	display: inline-block;
+	padding-top: 3px;
+	width: 120px;
+	height: 25px;
+	border-radius: 25px;
+	background-color: white;
+	color: #236891;
+	border: white solid 2px;
+	text-decoration: none;
+	transition-duration: 0.6s;
+	-webkit-touch-callout: none;
+	-webkit-user-select: none;
+	-khtml-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+}
+#new_game:hover{
+	background-color: #236891;
+	color: white;
+}
+/* End restart game button */
+
+/* Superman button */
+#superman{
+	height: 40px;
+	width: 40px;
+	position: absolute;
+	margin: -4px 0 0 30px;
+	display: inline-block;
+	transition-duration: 0.6s;
+	cursor: pointer;
+}
+#superman:hover{
+	margin: -5px 0 0 30px;
+	width: 43px;
+	height: 43px;
+}
+/* End superman button */
+/* End input toolbar */

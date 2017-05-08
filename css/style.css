@@ -1,0 +1,103 @@
+/* Game board */
+/* div */
+.board{
+	padding-top: 20px;
+	text-align: center;
+	-webkit-touch-callout: none;
+	-webkit-user-select: none;
+	-khtml-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;	
+}
+/* Table of squares */
+.game_table{
+	background-color: white;
+	margin: auto;
+	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+/* normal square */
+.board_td{
+	width: 20px;
+	height: 20px;
+	background-color: #c0c0c0;
+}
+.board_td:hover{
+	background-color: #808080;
+	opacity: 0.7;
+}
+/* superman square */
+.superman{
+	opacity: 0.4;
+}
+/* uncover square */
+.uncover{
+	width: 20px;
+	height: 20px;
+	background-color: #f2f2f2;
+}
+/* mine square */
+.mine{
+	width: 20px;
+	height: 20px;
+	background-color: black;
+}
+/* Flag square */
+.flag{
+	width: 20px;
+	height: 20px;
+	background-color: rgb(237,94,143);
+}
+/* Superman red mine square */
+.red_mine{
+	background-color: #ce2910;
+}
+/* End game board */
+
+/* Animations */
+@keyframes shake {
+  from, to {
+    transform: translate3d(0, 0, 0);
+  }
+
+  10%, 30%, 50%, 70%, 90% {
+    transform: translate3d(-10px, 0, 0);
+  }
+
+  20%, 40%, 60%, 80% {
+    transform: translate3d(10px, 0, 0);
+  }
+}
+@keyframes flash {
+ from, 50%, to {
+    opacity: 1;
+  }
+
+  25%, 75% {
+    opacity: 0;
+  }
+}
+.message{
+	height: 15px;
+	display: block;
+	font-size: 13px;
+	margin: 5px 0 0 0;
+}
+.shake {
+  animation-name: shake;
+}
+.flash {
+  animation-name: flash;
+}
+.animated {
+  animation-duration: 1s;
+  animation-fill-mode: both;
+}
+.red{
+	color: red;
+}
+.green{
+	color: green;
+}
+/* End Animations */
+
