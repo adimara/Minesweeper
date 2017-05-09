@@ -12,6 +12,7 @@ Try it here https://adimara.github.io/Minesweeper
 # Basic Keys
 
 Start Game button = will start the game by using the width, height and mines values
+
 NOTE: Negative numbers will be treated as positive
       Any Non-digit value will be set to default value (10)
 
