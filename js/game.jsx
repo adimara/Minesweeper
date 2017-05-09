@@ -20,6 +20,8 @@ const FLAG_MINE = 3;	// flag with mine under
 const EMPTY = 0;
 /* Max height & width */
 const MAX_SIZE = 300;
+/* Default number */
+const DEFAULT_NUM = 10;
 /* When page is loaded */
 window.onload = function() {
   // Add event listeners
@@ -436,10 +438,9 @@ function restartGame(){
 	// board div
 	var board = document.getElementById("board");
 	// get parameters from the input toolbar
-	var width = parseInt(document.getElementById("width").value);
-	console.log(width.match(/^\d+$/));
-	var height = parseInt(document.getElementById("height").value);
-	var mines = parseInt(document.getElementById("mines").value);
+	var width = /^\d+$/.test(document.getElementById("width").value) ? parseInt(document.getElementById("width").value): DEFAULT_NUM;
+	var height = /^\d+$/.test(document.getElementById("height").value) ? parseInt(document.getElementById("height").value): DEFAULT_NUM;
+	var mines = /^\d+$/.test(document.getElementById("mines").value) ? parseInt(document.getElementById("mines").value): DEFAULT_NUM;
 	// white background
 	document.body.className = "";
 	// remove board to re-render it
