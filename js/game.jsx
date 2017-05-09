@@ -443,11 +443,12 @@ function restartGame(){
 	document.body.className = "";
 	// remove board to re-render it
 	ReactDOM.unmountComponentAtNode(board);
-	// limit the width & height params
+	// limit the width & height & mines params
 	width = width > MAX_SIZE ? MAX_SIZE : width;
 	height = height > MAX_SIZE ? MAX_SIZE : height;
 	width = width < 0 ? -width : width;
 	height = height < 0 ? -height : height;
+	mines = mines < 0 ? -mines : mines;
 	// create board
 	createBoard(height, width);
 	// put mines on the board
