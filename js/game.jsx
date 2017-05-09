@@ -436,8 +436,8 @@ function restartGame(){
 	// board div
 	var board = document.getElementById("board");
 	// get parameters from the input toolbar
-	console.log(isNaN(document.getElementById("width").value));
 	var width = parseInt(document.getElementById("width").value);
+	console.log(width.match(/^\d+$/));
 	var height = parseInt(document.getElementById("height").value);
 	var mines = parseInt(document.getElementById("mines").value);
 	// white background
