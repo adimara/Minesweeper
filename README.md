@@ -13,8 +13,7 @@ Try it here https://adimara.github.io/Minesweeper
 
 Start Game button = will start the game by using the width, height and mines values
 
-NOTE: Negative numbers will be treated as positive
-      Any Non-digit value will be set to default value (10)
+NOTE: Negative numbers will be treated as positive; Any Non-digit value will be set to default value (10)
 
 Superman button = will get you in superman-mode which reveal the position of all the mines on borad
 
