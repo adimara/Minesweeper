@@ -243,7 +243,7 @@
 					end = true;
 				}	
 				// Auto- winning, when the only thing left is to put flags
-				if(uncovered + flags_max == my_board.length*my_board[0].length){
+				if(flags_max < my_board.length*my_board[0].length && uncovered + flags_max == my_board.length*my_board[0].length){
 					// Winning background
 					document.body.className ="emoji_background";
 					for (var i = 0; i < superman_list.length; i++){
